@@ -1,19 +1,33 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
+var SSE = require('express-sse');
+ 
 var app = express(); 
 app.use(express.static('./static'));
 
-app.use(bodyParser.json()); // ???
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// See every request that comes in
-app.use(function(req, res, next){
-    console.log(req.url);
-    next();
+var sse = new SSE();
+
+
+// Main App
+app.get('/stream-express-sse', sse.init);
+
+app.post('/new-message', (req, res) => {
+    console.log(`/new-message: ${req.body.text}`);
+    sse.send(req.body.text);
+    res.send('OK');
 });
+
+
 
 // Standard routes
 app.get('/echo', (req, res) => res.send('Hello World!'));
+
+app.use(function(req, res, next){
+    console.log("Access: " + req.url);
+    next();
+});
 
 app.use( function(req, res){ 
     res.status(404); 
