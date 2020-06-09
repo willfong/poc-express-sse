@@ -1,0 +1,26 @@
+{
+  "name": "poc-express-sse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willfong/poc-express-sse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willfong/poc-express-sse/issues"
+  },
+  "homepage": "https://github.com/willfong/poc-express-sse#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-sse": "^0.5.3",
+    "nodemon": "^2.0.4"
+  }
+}
