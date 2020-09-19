@@ -19,7 +19,14 @@ app.post('/new-message', (req, res) => {
     res.send('OK');
 });
 
-
+app.get('/stream-manual', async (req, res) => {
+    res.writeHead(200, {
+        "Connection": "keep-alive",
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "X-Accel-Buffering": "no",        
+    });
+});
 
 // Standard routes
 app.get('/echo', (req, res) => res.send('Hello World!'));
