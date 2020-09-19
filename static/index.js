@@ -1,15 +1,17 @@
-$(document).ready(function() {
+// Example from: https://developer.mozilla.org/en-US/docs/Web/API/EventSource
 
-    $("#formNewMessage").submit(function(e) {
-        e.preventDefault();
-        $.post( "/new-message", { text: $("#textNewMessage").val() } ).then(() => {
-            $("#textNewMessage").val('');
-        });
+$(document).ready(function () {
+  $("#formNewMessage").submit(function (e) {
+    e.preventDefault();
+    $.post("/new-message", { text: $("#textNewMessage").val() }).then(() => {
+      $("#textNewMessage").val("");
     });
+  });
 
-    var es = new EventSource('/stream-express-sse');
-    es.onmessage = function (event) {
-        const data = JSON.parse(event.data);
-        $("#messages").append(`<li>${data}</li>`);
-    };
+	var sse = new EventSource("/stream-express-sse");
+	sse.addEventListener("chat-messages", function(e) { 
+		console.log(e.data);
+		const message = JSON.parse(e.data);
+		$("#messages").append(`<li>${message}</li>`);
+	})
 });
