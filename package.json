@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/willfong/poc-express-sse#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "eventsource": "^2.0.2",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-sse": "^0.5.3",
     "nodemon": "^2.0.4"
   }
